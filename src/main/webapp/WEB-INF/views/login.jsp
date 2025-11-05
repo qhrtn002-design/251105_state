@@ -4,6 +4,30 @@
     <title>로그인 페이지</title>
 </head>
 <body>
+
+<%-- 쿠키 --%>
+<%
+    //        String counter = "1";
+    int counter = 1;
+    String visited = "";
+    for (Cookie c : request.getCookies()) {
+        String name = c.getName();
+        if (name.equals("visited")) {
+            visited = c.getValue();
+        }
+        if (name.equals("counter")) {
+//                counter = c.getValue();
+            counter = Integer.parseInt(c.getValue());
+        }
+    }
+%>
+<p>
+    <%= counter %>번째 방문
+</p>
+<p>
+    <%= visited %>
+</p>
+
 <a href="/join">회원가입</a>
 <h3>로그인</h3>
 <%-- 보안처리가 필요하면 무조건 post --%>
