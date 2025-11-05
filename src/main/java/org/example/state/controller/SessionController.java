@@ -25,9 +25,24 @@ public class SessionController extends HttpServlet {
             // cookie -> text(string) -> 변환해주기 위한 작업...
             // session -> 우리가 넣은 데이터 방식만 알고 있다면 바로 casting.
         }
+        int visited = 0;
+        if (session.getAttribute("visited") != null) {
+            visited = (Integer) session.getAttribute("visited");
+        }
         counter++;
+        visited++;
         session.setAttribute("counter", counter);
+        session.setAttribute("visited", visited);
         // session <- req를 통해 조회가 가능하다 (session 자체는 서버에 있는 개념)
         req.getRequestDispatcher("/WEB-INF/views/session.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 단순히 특정 attribute를 삭제
+        HttpSession session = req.getSession();
+//        session.removeAttribute("counter");
+        session.invalidate(); // session 자체를 없게 만드는 것.
+        resp.sendRedirect(req.getContextPath() + "/session");
     }
 }
