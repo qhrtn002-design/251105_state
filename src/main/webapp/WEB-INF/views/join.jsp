@@ -9,5 +9,9 @@
     <input type="password" name="password"><br>
     <button>가입</button>
 </form>
+<p>
+    <%--        <%= request.getAttribute("msg") %>--%>
+    <%= session.getAttribute("msg") %>
+</p>
 </body>
 </html>
