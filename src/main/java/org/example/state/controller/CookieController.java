@@ -24,7 +24,7 @@ public class CookieController extends HttpServlet {
         }
         Cookie newCounterCookie = CookieUtil.createCookie("counter", Integer.toString(counterValue + 1), 86400);
         // 쿠키를 추가한다
-        Cookie visitedCookie = CookieUtil.createCookie("visited", "최근 방문함", 60 * 60 * 24);
+        Cookie visitedCookie = CookieUtil.createCookie("visited", "최근방문함", 60 * 60 * 24);
         resp.addCookie(visitedCookie);
 //        resp.addCookie(newCounterCookie);
         // 쿠키 삭제를 원할 경우 삭제용 쿠키를 덮어씌움
